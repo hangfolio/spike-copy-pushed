@@ -1,0 +1,24 @@
+# S4 control: the same Pages API call with less than pages: read. Spike only.
+name: S4 control
+on: workflow_dispatch
+permissions: {}
+jobs:
+  contents-read-only:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$REPO/pages" --jq '"build_type=" + .build_type' || echo "call failed (exit $?)"
+  no-permissions:
+    runs-on: ubuntu-24.04
+    permissions: {}
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$REPO/pages" --jq '"build_type=" + .build_type' || echo "call failed (exit $?)"
