@@ -1,5 +1,6 @@
 # hangfolio-plumbing: 1
 version: 2
+# Edited to trigger a fresh Dependabot run (spike S6).
 updates:
   - package-ecosystem: npm
     directory: /

@@ -8,6 +8,10 @@ jobs:
     permissions:
       contents: read
     steps:
+      # Deliberately old pin, so Dependabot opens a pull request (S6 Dependabot check).
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
